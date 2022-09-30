@@ -10,4 +10,5 @@ def load_env():
 
 def test_create():
     response = base_url().post(BaseUrl.users_url, data={"name": "Neo", "job": "Saviour"})
+    response.json()
     assert response.status_code == 201
