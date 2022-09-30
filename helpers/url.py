@@ -5,7 +5,11 @@ import curlify
 import allure
 
 
-class BaseUrl(Session):
+class BaseSession(Session):
+    default_url = "https://reqres.in"
+    users_url = "/api/users"
+    not_found_url = "/api/unknown"
+
     def __init__(self, **kwargs):
         self.base_url = kwargs.pop('base_url')
         super().__init__()
@@ -31,5 +35,5 @@ class BaseUrl(Session):
         return response
 
 
-def base_url() -> BaseUrl:
-    return BaseUrl(base_url=os.getenv('URL'))
+def requestSession() -> BaseSession:
+    return BaseSession(base_url=os.getenv('URL', 'https://reqres.in'))

@@ -1,6 +1,6 @@
 import pytest
 from dotenv import load_dotenv
-from helpers.url import base_url, BaseUrl
+from helpers.url import requestSession, BaseSession
 
 
 @pytest.fixture(scope='session', autouse=True)
@@ -9,6 +9,6 @@ def load_env():
 
 
 def test_create():
-    response = base_url().post(BaseUrl.users_url, data={"name": "Neo", "job": "Saviour"})
+    response = requestSession().post(BaseSession.users_url, data={"name": "Neo", "job": "Saviour"})
     response.json()
     assert response.status_code == 201
